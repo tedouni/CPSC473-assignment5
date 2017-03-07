@@ -1,5 +1,7 @@
 //For first part Figure 8.10
 //getAll() requires deepEqual versus equal due to Object
+
+//ESLint says error for singlequote but QUnit works for double quote.
 QUnit.test('DataStore', function(assert) {
     var ds = new App.DataStore();
 
@@ -21,12 +23,19 @@ QUnit.test('DataStore', function(assert) {
         "m@bond.com": "tea"
     });
 
+    //get m@bond.com
     assert.equal(ds.get('m@bond.com'), 'tea');
+    //get james@bond.com
     assert.equal(ds.get('james@bond.com'), undefined);
 
 });
 
-QUnit.test('DataStore', function(assert) {
+
+
+//Problem with 8.32 conversion is that Truck did not have any method that returned values that could be compared.
+//In order to fix this problem I had to modify printOrders() to return the customerIdArray
+
+QUnit.test('truck', function(assert) {
 
     myTruck.createOrder({
         emailAddress: 'me@goldfinger.com',
@@ -44,5 +53,11 @@ QUnit.test('DataStore', function(assert) {
     myTruck.deliverOrder('dr@no.com');
     myTruck.deliverOrder('m@bond.com');
     myTruck.printOrders();
+    assert.deepEqual(myTruck.printOrders(), {
+        'me@goldfinger.com': {
+            'coffee': 'double mocha',
+            'emailAddress': 'me@goldfinger.com'
+        }
+    });
 
 });
