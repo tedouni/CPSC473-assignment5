@@ -10,8 +10,8 @@ QUnit.test('DataStore', function(assert) {
     ds.add('james@bond.com', 'eshpressho');
 
     assert.deepEqual(ds.getAll(), {
-        "james@bond.com": "eshpressho",
-        "m@bond.com": "tea"
+        'james@bond.com': 'eshpressho',
+        'm@bond.com': 'tea'
     });
     //assert.equal(ds.get('m@bond.com'), 'tea');
     //assert.equal(ds.get('james@bond.com'), 'eshpressho');
@@ -20,7 +20,7 @@ QUnit.test('DataStore', function(assert) {
     ds.remove('james@bond.com');
 
     assert.deepEqual(ds.getAll(), {
-        "m@bond.com": "tea"
+        'm@bond.com': 'tea'
     });
 
     //get m@bond.com
@@ -33,10 +33,12 @@ QUnit.test('DataStore', function(assert) {
 
 
 //Problem with 8.32 conversion is that Truck did not have any method that returned values that could be compared.
-//In order to fix this problem I had to modify printOrders() to return the customerIdArray
+//In order to fix this problem I created a new function called getAllTruck that will return all objects.
 
 QUnit.test('truck', function(assert) {
 
+    // var myTruck;
+    
     myTruck.createOrder({
         emailAddress: 'me@goldfinger.com',
         coffee: 'double mocha'
@@ -50,10 +52,24 @@ QUnit.test('truck', function(assert) {
         coffee: 'earl grey'
     });
     myTruck.printOrders();
+    assert.deepEqual(myTruck.getAllTruck(), {
+        'me@goldfinger.com': {
+            'coffee': 'double mocha',
+            'emailAddress': 'me@goldfinger.com'
+        },
+        'dr@no.com': {
+            'coffee': 'decaf',
+            'emailAddress': 'dr@no.com'
+        },
+        'm@bond.com': {
+            'coffee': 'earl grey',
+            'emailAddress': 'm@bond.com'
+        }
+    });
     myTruck.deliverOrder('dr@no.com');
     myTruck.deliverOrder('m@bond.com');
     myTruck.printOrders();
-    assert.deepEqual(myTruck.printOrders(), {
+    assert.deepEqual(myTruck.getAllTruck(), {
         'me@goldfinger.com': {
             'coffee': 'double mocha',
             'emailAddress': 'me@goldfinger.com'
