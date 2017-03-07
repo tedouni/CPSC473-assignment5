@@ -1,3 +1,5 @@
+/* global QUnit: false, App: false, myTruck: true */
+
 //For first part Figure 8.10
 //getAll() requires deepEqual versus equal due to Object
 
@@ -37,8 +39,7 @@ QUnit.test('DataStore', function(assert) {
 
 QUnit.test('truck', function(assert) {
 
-    // var myTruck;
-    
+    //var myTruck = new Truck('ncc-1701', new DataStore());
     myTruck.createOrder({
         emailAddress: 'me@goldfinger.com',
         coffee: 'double mocha'

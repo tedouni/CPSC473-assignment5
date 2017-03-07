@@ -28,6 +28,7 @@
 
     };
 
+    //Additional function to return all of the objects (used for QUnit testing)
     Truck.prototype.getAllTruck = function() {
         var customerArray = Object(this.db.getAll());
         return customerArray;
