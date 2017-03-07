@@ -3,7 +3,6 @@
 //For first part Figure 8.10
 //getAll() requires deepEqual versus equal due to Object
 
-//ESLint says error for singlequote but QUnit works for double quote.
 QUnit.test('DataStore', function(assert) {
     var ds = new App.DataStore();
 
